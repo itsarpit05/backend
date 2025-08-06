@@ -38,7 +38,7 @@ const registerUser = asyncHandler(async(req,res)=>{
 
 
     //3 step of checking if user exists
-    const existerUser =User.findOne({
+    const existerUser =await User.findOne({
         $or : [{username},{email}]
     })
 
@@ -47,9 +47,19 @@ const registerUser = asyncHandler(async(req,res)=>{
     }
 
 
+    console.log("BODY:", req.body);
+
+
+
+
 // 4 step of checking if avatar exists
    const avatarLocalPath = req.files?.avatar[0]?.path
-   const coverImageLocalPath = req.files?.coverImage[0]?.path
+//    const coverImageLocalPath = req.files?.coverImage[0]?.path
+
+let coverImageLocalPath;
+if(req.files && Array.isArray(req.files.coverImage) && req.files.coverImage.length>0){
+    coverImageLocalPath = req.files.coverImage[0].path
+}
 
    if(!avatarLocalPath){
     throw new ApiError(400,"Avatar required")
