@@ -1,7 +1,7 @@
 const asyncHandler=(requestHandler)=>{
 
  // It returns a new function that Express can use as a route handler
-  return(req,res,next)=>{
+  return (req,res,next)=>{
        // We call the original async function (requestHandler)
         // If it returns a promise that gets rejected (i.e., throws an error),
         // Promise.resolve(...).catch(...) will catch that error

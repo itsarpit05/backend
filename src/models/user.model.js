@@ -43,18 +43,18 @@ const userSchema = mongoose.Schema({
         unique:true,
     },
     refreshToken:{
-        
+        type:String,
     }
 },{timestamps:true})
 
 userSchema.pre('save',async function(next){
     if(!this.isModified("password")) return next();  // checks if pass is not modifed simply call the next function else , be careful "password" is passed here in double quotes only syntax
-    this.password = bcrypt.hash(this.password,10) // encrypts pass and hashes it , with 10 rounds
+    this.password =await bcrypt.hash(this.password,10) // encrypts pass and hashes it , with 10 rounds
     next(); // calls the next func
 })
 
 userSchema.methods.isPasswordCorrect = async function(password){   // custom methods to check if password is correct or not
-   await bcrypt.compare(password,this.password)     // return T/F
+  return await bcrypt.compare(password,this.password)     // return T/F
 }
 
 

@@ -18,4 +18,18 @@ app.use(express.static("public"))    // helps to upload static things such as av
 
 app.use(cookieParser())
 
+
+//routes
+
+import userRouter from './routes/user.routes.js'
+
+// app.get("/", (req, res) => {
+//   res.send("Server is working 🚀");
+// });    Testing thing for postman
+
+//routes declaration
+app.use("/api/v1/users",userRouter)
+
+//http://localhost:8000/api/v1/users/register
+
 export {app}
