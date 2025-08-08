@@ -1,8 +1,8 @@
 // verfies is user is there or not
 
 import jwt from "jsonwebtoken";
-import { ApiError } from "../utils/APIerror";
-import { asyncHandler } from "../utils/asyncHandler";
+import { ApiError } from "../utils/APIerror.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
 import { User } from "../models/user.model.js";
 
 
